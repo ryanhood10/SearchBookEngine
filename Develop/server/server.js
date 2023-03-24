@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { ApolloServer, gql } = require('apollo-server-express');
-const db = require('./config/connection');
+const connect = require('./config/connection');
 const routes = require('./routes');
 
 // Define your GraphQL type definitions and resolvers here
@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3001;
 const startServer = async () => {
   // Wait for the ApolloServer to start
   await server.start();
-  
+
   // Apply the ApolloServer middleware to the Express app
   server.applyMiddleware({ app });
 
@@ -41,12 +41,17 @@ const startServer = async () => {
 
   app.use(routes);
 
-  db.once('open', () => {
+  try {
+    await connect();
     app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
     console.log(`🚀 GraphQL Server ready at http://localhost:${PORT}${server.graphqlPath}`);
-  });
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
 };
 
 // Call the startServer function to start the server
 startServer();
+
                                                             
