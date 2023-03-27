@@ -1,21 +1,23 @@
 const express = require('express');
 const path = require('path');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer} = require('apollo-server-express');
 const connect = require('./config/connection');
 const routes = require('./routes');
 
 // Define your GraphQL type definitions and resolvers here
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
+// const typeDefs = gql`
+//   type Query {
+//     hello: String
+//   }
+// `;
 
-const resolvers = {
-  Query: {
-    hello: () => "Hello, world!",
-  },
-};
+// const resolvers = {
+//   Query: {
+//     hello: () => "Hello, world!",
+//   },
+// };
+const typeDefs = require('./schemas/typeDefs');
+const resolvers = require('./schemas/resolvers');
 
 // Create an instance of ApolloServer
 const server = new ApolloServer({ typeDefs, resolvers });
