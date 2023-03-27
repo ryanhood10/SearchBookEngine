@@ -42,7 +42,7 @@ const startServer = async () => {
   }
 
   app.use(routes);
-
+ 
   try {
     await connect();
     app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
