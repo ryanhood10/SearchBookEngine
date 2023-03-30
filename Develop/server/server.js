@@ -5,17 +5,7 @@ const connect = require('./config/connection');
 const routes = require('./routes');
 
 // Define your GraphQL type definitions and resolvers here
-// const typeDefs = gql`
-//   type Query {
-//     hello: String
-//   }
-// `;
 
-// const resolvers = {
-//   Query: {
-//     hello: () => "Hello, world!",
-//   },
-// };
 const typeDefs = require('./schemas/typeDefs');
 const resolvers = require('./schemas/resolvers');
 
