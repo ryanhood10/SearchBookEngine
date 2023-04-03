@@ -4,6 +4,9 @@ const { ApolloServer} = require('apollo-server-express');
 const connect = require('./config/connection');
 const routes = require('./routes');
 
+//had a problem with proxy so here is cors 
+const cors = require('cors');
+
 // Define your GraphQL type definitions and resolvers here
 
 const typeDefs = require('./schemas/typeDefs');
@@ -15,6 +18,10 @@ const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+//Allow cross-origin request
+app.use(cors());
+
+
 // Function to start the server
 const startServer = async () => {
   // Wait for the ApolloServer to start
@@ -25,6 +32,9 @@ const startServer = async () => {
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+
+  // This line is to increase the timeout duration
+app.timeout = 600000;
 
   // If we're in production, serve client/build as static assets
   if (process.env.NODE_ENV === 'production') {
