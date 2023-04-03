@@ -41,6 +41,8 @@ Once logged in, the menu options will change to "Search for Books", "My Saved Bo
 To view your saved books, click on the "My Saved Books" menu option. You can remove books from your reading list using the "Remove" button.
 
 To log out of your account, click on the "Logout" menu option.
+# Deployed Application Link
+On Heroku: https://search4booksapplication.herokuapp.com/
 
 ## Contributing
 Please open an issue to discuss any proposed changes or improvements.
